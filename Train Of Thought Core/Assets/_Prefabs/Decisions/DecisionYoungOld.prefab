@@ -6,17 +6,39 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: choice1List.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: choice2List.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: DecisionAge
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: choice1List.Array.data[0]
+      value: 
+      objectReference: {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: choice2List.Array.data[0]
+      value: 
+      objectReference: {fileID: 1904991222732660, guid: a06ab37119dcf4b2f81a8a37e1a8be2c,
+        type: 2}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
+  m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1427347438482958}
-  m_IsPrefabAsset: 1
+  m_IsPrefabParent: 0
 --- !u!1 &1427347438482958
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
+  serializedVersion: 5
   m_Component:
   - component: {fileID: 4969408132976738}
   - component: {fileID: 114498356507384738}
@@ -30,7 +52,7 @@ GameObject:
 --- !u!4 &4969408132976738
 Transform:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427347438482958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -43,7 +65,7 @@ Transform:
 --- !u!114 &114498356507384738
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427347438482958}
   m_Enabled: 1
@@ -51,5 +73,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7abafdabb7542a7b92002baef38d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choice1: {fileID: 1223567287509974, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 2}
-  choice2: {fileID: 1790104448529088, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 2}
+  direction: 0
+  choice1List:
+  - {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 2}
+  choice2List:
+  - {fileID: 1904991222732660, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 2}
+  choice1: {fileID: 0}
+  choice2: {fileID: 0}

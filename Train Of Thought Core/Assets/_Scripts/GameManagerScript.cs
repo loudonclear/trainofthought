@@ -5,21 +5,27 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour {
 	private float swipeDirectionH = 0f;
 	private float swipeDirectionV = 0f;
-	private Vector3 defaultState;
-	public Vector3 leftState;
-	public Vector3 upState;
-	public Vector3 rightState;
+
+    public Transform lever;
+	public float defaultState;
+	public float leftState;
+	public float rightState;
 	public float swipeThreshold = 0f;
 	[HideInInspector]
 	public int decision = 0;
 	public GameObject[] decisions;
+    public ChoiceScript[] choices;
+    public int[] choiceCounts;
 	public float updateDecisionDelay = 2f;
 	private bool decisionMade = false;
+
+    private DecisionScript decisionScr;
 	// Use this for initialization
 
 	void Start() {
-		defaultState.Set(transform.position.x, transform.position.y, transform.position.z);
-		Instantiate(decisions[Random.Range(0, decisions.Length)]);
+        choiceCounts = new int[choices.Length];
+        lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
+        decisionScr = Instantiate(decisions[Random.Range(0, decisions.Length)]).GetComponent<DecisionScript>();
 	}
 
 	void Update() {
@@ -32,32 +38,66 @@ public class GameManagerScript : MonoBehaviour {
 			if (swipeDirectionH < swipeThreshold) 
 			{
 				decision = 1;
-				transform.position = leftState;
-				StartCoroutine("updateDecision");
+                lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
+                choiceCounts[GetChoiceIndex(choices, decisionScr.choice1.GetComponent<ChoiceScript>())]++;
+                
+                StartCoroutine("updateDecision");
 				decisionMade = true;
+                
 			} else if (swipeDirectionH > swipeThreshold) 
 			{
 				decision = 3;
-				transform.position = rightState;
-				StartCoroutine("updateDecision");
+                lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
+                choiceCounts[GetChoiceIndex(choices, decisionScr.choice2.GetComponent<ChoiceScript>())]++;
+
+                StartCoroutine("updateDecision");
 				decisionMade = true;
-			} else if (swipeDirectionV > swipeThreshold) 
+            } else if (swipeDirectionV > swipeThreshold) 
 			{
 				decision = 2;
-				transform.position = upState;
-				StartCoroutine("updateDecision");
+                lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
+                StartCoroutine("updateDecision");
 				decisionMade = true;
-			} else 
+            } else 
 			{
-				transform.position = defaultState;
-			}
-		}
+                lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
+            }
+        }
 	}
 
-	IEnumerator updateDecision() {
+    public void LeftDecision()
+    {
+        decision = 1;
+        lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
+        StartCoroutine("updateDecision");
+        decisionMade = true;
+    }
+
+    public void RightDecision()
+    {
+        decision = 3;
+        lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
+
+        StartCoroutine("updateDecision");
+        decisionMade = true;
+    }
+
+    IEnumerator updateDecision() {
 		yield return new WaitForSeconds(updateDecisionDelay);
 		decisionMade = false;
 		decision = 0;
-		Instantiate(decisions[Random.Range(0, decisions.Length)]);
+        decisionScr = Instantiate(decisions[Random.Range(0, decisions.Length)]).GetComponent<DecisionScript>();
 	}
+
+    int GetChoiceIndex(ChoiceScript[] choices, ChoiceScript choice)
+    {
+        for (int i = 0; i < choices.Length; i++)
+        {
+            if (choices[i].description.Equals(choice.description))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
