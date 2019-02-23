@@ -69,6 +69,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         decision = 1;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
+        choiceCounts[GetChoiceIndex(choices, decisionScr.choice1.GetComponent<ChoiceScript>())]++;
         StartCoroutine("updateDecision");
         decisionMade = true;
     }
@@ -77,7 +78,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         decision = 3;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
-
+        choiceCounts[GetChoiceIndex(choices, decisionScr.choice2.GetComponent<ChoiceScript>())]++;
         StartCoroutine("updateDecision");
         decisionMade = true;
     }
