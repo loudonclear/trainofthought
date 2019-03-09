@@ -865,8 +865,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lever: {fileID: 691374823}
   defaultState: 0
-  leftState: -50
-  rightState: 50
+  leftState: 50
+  rightState: -50
   swipeThreshold: 0
   decision: 0
   decisions: []
@@ -874,8 +874,6 @@ MonoBehaviour:
   choiceCounts: 
   updateDecisionDelay: 2
   forwardTimer: 5
-  forwardTicker: 0
-  timerText: {fileID: 703522306}
 --- !u!4 &1011466395
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,9 +1132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 2.77
+  m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
