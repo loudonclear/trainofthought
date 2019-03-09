@@ -4,7 +4,6 @@ using System.Collections;
 
 public class DemoOne : MonoBehaviour
 {
-	public Transform cube;
 	private Vector2 _scrollPosition; // for the scroll view
 	public AnimationCurve touchPadInputCurve = AnimationCurve.Linear( 0.0f, 0.0f, 1.0f, 1.0f );
 

@@ -745,13 +745,8 @@ MonoBehaviour:
   rightState: -50
   swipeThreshold: 0
   decision: 0
-  decisions:
-  - {fileID: 1054785962311586, guid: e33fba5cc26674d9288c6cb7a762db4f, type: 2}
-  - {fileID: 1427347438482958, guid: 9460c15a8424b46579274996b25b5ab1, type: 2}
-  choices:
-  - {fileID: 114948445979815764, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 2}
-  - {fileID: 114817581593743832, guid: df2f1cc1cccbb45f5ac88e726a3ff07f, type: 2}
-  - {fileID: 114847624364597078, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 2}
+  decisions: []
+  choices: []
   choiceCounts: 
   updateDecisionDelay: 2
 --- !u!4 &1011466395
@@ -778,7 +773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff10f4bbad480f143bf580474ae6f4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 0}
   touchPadInputCurve:
     serializedVersion: 2
     m_Curve:
