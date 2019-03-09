@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
-
 
 public class GameManagerScript : MonoBehaviour {
 	private float swipeDirectionH = 0f;
@@ -19,7 +19,10 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject[] choices;
     public int[] choiceCounts;
 	public float updateDecisionDelay = 2f;
-	private bool decisionMade = false;
+    public float forwardTimer = 5f;
+    public float forwardTicker;
+    public Text timerText;
+    private bool decisionMade = false;
 
     private DecisionScript decisionScr;
 
@@ -29,16 +32,24 @@ public class GameManagerScript : MonoBehaviour {
         choices = Resources.LoadAll("_Prefabs/Choices", typeof(GameObject)).Cast<GameObject>().ToArray();
     }
 
-	void Start() {
+    void Start() {
         choiceCounts = new int[choices.Length];
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
         decisionScr = Instantiate(decisions[Random.Range(0, decisions.Length)]).GetComponent<DecisionScript>();
-	}
+        forwardTicker = forwardTimer;
+        timerText = GameObject.Find("Timer").GetComponent<Text>();
+
+    }
 
 	void Update() {
 		swipeDirectionH = Input.GetAxis("Horizontal");
 		swipeDirectionV = Input.GetAxis("Vertical");
-	}
+        if (!decisionMade)
+        {
+            forwardTicker -= (1f/60f);
+            timerText.text = forwardTicker.ToString("F2");
+        }
+    }
 
 	void FixedUpdate () {
 		if (!decisionMade) {
@@ -57,13 +68,13 @@ public class GameManagerScript : MonoBehaviour {
                 lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
                 choiceCounts[GetChoiceIndex(choices, decisionScr.choice2.GetComponent<ChoiceScript>())]++;
 
-                StartCoroutine("updateDecision");
+                StartCoroutine("UpdateDecision");
 				decisionMade = true;
-            } else if (swipeDirectionV > swipeThreshold) 
+            } else if (swipeDirectionV > swipeThreshold || forwardTicker <= 0) 
 			{
 				decision = 2;
                 lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
-                StartCoroutine("updateDecision");
+                StartCoroutine("UpdateDecision");
 				decisionMade = true;
             } else 
 			{
@@ -76,7 +87,8 @@ public class GameManagerScript : MonoBehaviour {
     {
         decision = 1;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
-        StartCoroutine("updateDecision");
+        choiceCounts[GetChoiceIndex(choices, decisionScr.choice1.GetComponent<ChoiceScript>())]++;
+        StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
 
@@ -84,19 +96,20 @@ public class GameManagerScript : MonoBehaviour {
     {
         decision = 3;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
-
-        StartCoroutine("updateDecision");
+        choiceCounts[GetChoiceIndex(choices, decisionScr.choice2.GetComponent<ChoiceScript>())]++;
+        StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
 
-    IEnumerator updateDecision() {
+    IEnumerator UpdateDecision() {
 		yield return new WaitForSeconds(updateDecisionDelay);
 		decisionMade = false;
+        forwardTicker = forwardTimer;
 		decision = 0;
         decisionScr = Instantiate(decisions[Random.Range(0, decisions.Length)]).GetComponent<DecisionScript>();
 	}
 
-    int GetChoiceIndex(GameObject[] choices, ChoiceScript choice)
+     int GetChoiceIndex(GameObject[] choices, ChoiceScript choice)
     {
         for (int i = 0; i < choices.Length; i++)
         {
