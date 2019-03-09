@@ -59,7 +59,7 @@ public class GameManagerScript : MonoBehaviour {
                 lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
                 choiceCounts[GetChoiceIndex(choices, decisionScr.choice1.GetComponent<ChoiceScript>())]++;
                 
-                StartCoroutine("updateDecision");
+                StartCoroutine("UpdateDecision");
 				decisionMade = true;
                 
 			} else if (swipeDirectionH > swipeThreshold) 
