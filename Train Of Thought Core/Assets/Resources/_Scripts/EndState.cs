@@ -11,6 +11,7 @@ public class EndState : MonoBehaviour {
     public Text GameOverText;
     public string[] GameOverLines;
     public Cart CartObj;
+    private bool hasDied = false;
     
     // Use this for initialization
     void Start () {
@@ -23,8 +24,9 @@ public class EndState : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyUp("a"))
+        if (GameManager.dead && !hasDied)
         {
+            hasDied = true;
             this.OnGameEnd();
         }
     }

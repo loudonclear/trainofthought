@@ -45,7 +45,11 @@ public class DecisionScript : MonoBehaviour {
 		{
 			notification.text = "You chose " + choice1.GetComponent<ChoiceScript>().description;
 			Destroy(this.gameObject);
-		} else if (sc.decision == 2)
+            if (choice1.GetComponent<ChoiceScript>().solid)
+            {
+                RanIntoSolid();
+            }
+        } else if (sc.decision == 2)
 		{
             notification.text = "You're dead";
             this.RunOffTracks();
@@ -54,13 +58,21 @@ public class DecisionScript : MonoBehaviour {
 		{
 			notification.text = "You chose " + choice2.GetComponent<ChoiceScript>().description;
             Destroy(this.gameObject);
-		}
+            if (choice2.GetComponent<ChoiceScript>().solid)
+            {
+                RanIntoSolid();
+            }
+        }
 	}
 
     void RunOffTracks()
     {
         sc.dead = true;
     }
-    //hi
+
+    void RanIntoSolid()
+    {
+        sc.dead = true;
+    }
 
 }
