@@ -104,10 +104,20 @@ public class GameManagerScript : MonoBehaviour {
 
     IEnumerator UpdateDecision() {
 		yield return new WaitForSeconds(updateDecisionDelay);
-		decisionMade = false;
+        if (decisionScr.choice1.GetComponent<ChoiceScript>().description == "PowerUp" && decision == 1
+            || decisionScr.choice2.GetComponent<ChoiceScript>().description == "PowerUp" && decision == 3)
+        {
+            print("Activating PowerUp");
+            this.gameObject.GetComponent<PowerUp>().ActivatePowerUp();
+        }
+        decisionMade = false;
         forwardTicker = forwardTimer;
 		decision = 0;
         decisionScr = Instantiate(decisions[Random.Range(0, decisions.Length)]).GetComponent<DecisionScript>();
+        if(this.gameObject.GetComponent<PowerUp>().MoreTime)
+        {
+            this.gameObject.GetComponent<PowerUp>().removeMoreTimePowerUp();
+        }
 	}
 
      int GetChoiceIndex(GameObject[] choices, ChoiceScript choice)
