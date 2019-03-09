@@ -20,6 +20,7 @@ public class GameManagerScript : MonoBehaviour {
     public int[] choiceCounts;
 	public float updateDecisionDelay = 2f;
     public float forwardTimer = 5f;
+    public bool dead = false;
     private float forwardTicker;
     private Text timerText;
     private bool decisionMade = false;

@@ -17,7 +17,7 @@ public class DecisionScript : MonoBehaviour {
     private GameObject option1, option2;
 
     [HideInInspector]
-	public GameObject choice1, choice2;
+    public GameObject choice1, choice2;
 
 	void Start () {
 		sc = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
@@ -59,7 +59,7 @@ public class DecisionScript : MonoBehaviour {
 
     void RunOffTracks()
     {
-
+        sc.dead = true;
     }
 
 }
