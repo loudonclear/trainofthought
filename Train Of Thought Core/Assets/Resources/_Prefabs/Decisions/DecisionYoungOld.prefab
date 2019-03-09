@@ -45,10 +45,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   choice1List:
+<<<<<<< HEAD
   - {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
   - {fileID: 1858704221166201662, guid: 9bbb52ccd7a604355a28ae2b50797578, type: 3}
   choice2List:
   - {fileID: 1904991222732660, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 3}
   - {fileID: 1442277342581790, guid: da0095fdce77b2f4b9d06fa5de7e6d23, type: 3}
+=======
+  - {fileID: 2322555156008284497, guid: 95ffd00d99913cc48a9e1e57d757c113, type: 3}
+  choice2List:
+  - {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
+  - {fileID: 1442277342581790, guid: da0095fdce77b2f4b9d06fa5de7e6d23, type: 3}
+  - {fileID: 1904991222732660, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 3}
+>>>>>>> 2ba2911e226717b9fa5aa1a6b42f6902947e89b3
   choice1: {fileID: 0}
   choice2: {fileID: 0}

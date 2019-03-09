@@ -32,6 +32,11 @@ public class Cart : MonoBehaviour {
         quantity -= amount;
     }
 
+    public void AddCargo(int amount)
+    {
+        quantity += amount;
+    }
+
     //For Canvas
     public int GetQuantity()
     {
