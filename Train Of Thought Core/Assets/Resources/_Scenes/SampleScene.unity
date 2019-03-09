@@ -182,7 +182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &68757930
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 122148185}
   - component: {fileID: 122148184}
   m_Layer: 0
-  m_Name: Option 1
+  m_Name: Option 1 Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 332823605}
   - component: {fileID: 332823604}
   m_Layer: 0
-  m_Name: Option 2
+  m_Name: Option 2 Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 650827000}
   - component: {fileID: 650826999}
   m_Layer: 0
-  m_Name: train_lever_base
+  m_Name: Sprite_LeverBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 691374823}
   - component: {fileID: 691374822}
   m_Layer: 0
-  m_Name: train_lever_stick
+  m_Name: Sprite_Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -40.7, y: -24.755}
+  m_AnchoredPosition: {x: -40.69995, y: -24.755}
   m_SizeDelta: {x: 81.2, y: 49.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &703522306
@@ -949,12 +949,14 @@ MonoBehaviour:
   rightState: -50
   swipeThreshold: 0
   decision: 0
+  decisionsAlive: 0
   decisions: []
   choices: []
   choiceCounts: 
-  updateDecisionDelay: 2
-  forwardTimer: 5
+  updateDecisionDelay: 1.5
+  forwardTimer: 3
   dead: 0
+  started: 0
 --- !u!4 &1011466395
 Transform:
   m_ObjectHideFlags: 0
@@ -1018,11 +1020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1011466394}
-  choices: []
-  choiceCounts: 
-  GameOverText: {fileID: 0}
-  GameOverLines: []
   CartObj: {fileID: 1124922210}
+  GameOverText: {fileID: 0}
 --- !u!1 &1124922209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1129,7 @@ GameObject:
   - component: {fileID: 1418079605}
   - component: {fileID: 1418079604}
   m_Layer: 0
-  m_Name: setting_track_split_Y
+  m_Name: Sprite_TrackY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -26,8 +26,8 @@ public class DecisionScript : MonoBehaviour {
         option1Text = GameObject.Find("Option 1 Text").GetComponent<Text>();
         option2Text = GameObject.Find("Option 2 Text").GetComponent<Text>();
 
-        option1 = GameObject.Find("Option 1");
-        option2 = GameObject.Find("Option 2");
+        option1 = GameObject.Find("Option 1 Container");
+        option2 = GameObject.Find("Option 2 Container");
 
 
         choice1 = choice1List[Random.Range(0, choice1List.Length)];
@@ -45,22 +45,39 @@ public class DecisionScript : MonoBehaviour {
 		{
 			notification.text = "You chose " + choice1.GetComponent<ChoiceScript>().description;
 			Destroy(this.gameObject);
-		} else if (sc.decision == 2)
+            sc.decisionsAlive--;
+            if (choice1.GetComponent<ChoiceScript>().solid)
+            {
+                RanIntoSolid();
+            }
+        } else if (sc.decision == 2)
 		{
             notification.text = "You're dead";
             this.RunOffTracks();
             Destroy(this.gameObject);
-		} else if (sc.decision == 3)
+            sc.decisionsAlive--;
+        } else if (sc.decision == 3)
 		{
 			notification.text = "You chose " + choice2.GetComponent<ChoiceScript>().description;
             Destroy(this.gameObject);
-		}
+            sc.decisionsAlive--;
+            if (choice2.GetComponent<ChoiceScript>().solid)
+            {
+                RanIntoSolid();
+            }
+        }
 	}
 
     void RunOffTracks()
     {
         sc.dead = true;
+        sc.started = false;
     }
-    //hi
+
+    void RanIntoSolid()
+    {
+        sc.dead = true;
+        sc.started = false;
+    }
 
 }

@@ -6,26 +6,37 @@ using UnityEngine.UI;
 public class EndState : MonoBehaviour {
 
     public GameManagerScript GameManager;
-    public GameObject[] choices;
-    public int[] choiceCounts;
-    public Text GameOverText;
-    public string[] GameOverLines;
     public Cart CartObj;
+    public Text GameOverText;
+    private GameObject[] choices;
+    private int[] choiceCounts;
+    private string[] GameOverLines;
+    private bool hasDied = false;
     
     // Use this for initialization
     void Start () {
         GameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         CartObj = GameObject.Find("Cart").GetComponent<Cart>();
-        GameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
+        if (GameOverText == null)
+        {
+            GameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
+        }
         GameOverLines = new string[]{"Your train has crashed", "That's enough killing for one day",
             "Well that was, eventful", "Your train is out of service"};
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyUp("a"))
+        if (GameManager.dead && !hasDied)
         {
+            hasDied = true;
             this.OnGameEnd();
+        }
+        if (Input.GetKeyDown("space") && hasDied)
+        {
+            GameManager.RestartLevel();
+            GameOverText.text = "";
+            hasDied = false;
         }
     }
 
