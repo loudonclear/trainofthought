@@ -61,5 +61,6 @@ public class DecisionScript : MonoBehaviour {
     {
         sc.dead = true;
     }
+    //hi
 
 }
