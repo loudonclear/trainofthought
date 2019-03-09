@@ -121,8 +121,6 @@ public class GameManagerScript : MonoBehaviour {
     {
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
     }
-
-
     public void RestartLevel()
     {
         choiceCounts = new int[choices.Length];
