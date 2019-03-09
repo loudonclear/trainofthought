@@ -47,12 +47,19 @@ public class DecisionScript : MonoBehaviour {
 			Destroy(this.gameObject);
 		} else if (sc.decision == 2)
 		{
-			notification.text = "You're dead";
-			Destroy(this.gameObject);
+            notification.text = "You're dead";
+            this.RunOffTracks();
+            Destroy(this.gameObject);
 		} else if (sc.decision == 3)
 		{
 			notification.text = "You chose " + choice2.GetComponent<ChoiceScript>().description;
             Destroy(this.gameObject);
 		}
 	}
+
+    void RunOffTracks()
+    {
+
+    }
+
 }
