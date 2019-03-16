@@ -286,6 +286,101 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &292084739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292084740}
+  - component: {fileID: 292084743}
+  - component: {fileID: 292084742}
+  - component: {fileID: 292084741}
+  m_Layer: 5
+  m_Name: Cart Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &292084740
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292084739}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1726956085}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 400, y: 580.4}
+  m_SizeDelta: {x: 500, y: 112.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &292084741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292084739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &292084742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292084739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d9c82d47806f7d44e9d65400aa1f7764, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 69
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Cargo Remaining
+--- !u!222 &292084743
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292084739}
+  m_CullTransparentMesh: 0
 --- !u!1 &309299163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1138,7 @@ GameObject:
   - component: {fileID: 1011466396}
   - component: {fileID: 1011466393}
   - component: {fileID: 1011466397}
+  - component: {fileID: 1011466398}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1095,6 +1191,9 @@ MonoBehaviour:
   forwardTimer: 3
   dead: 0
   started: 0
+  forwardTicker: 0
+  cart: {fileID: 0}
+  powerUp: {fileID: 0}
 --- !u!4 &1011466395
 Transform:
   m_ObjectHideFlags: 0
@@ -1160,6 +1259,21 @@ MonoBehaviour:
   GameManager: {fileID: 1011466394}
   CartObj: {fileID: 1124922210}
   GameOverText: {fileID: 0}
+--- !u!114 &1011466398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011466392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b618026236dd95e4ba1ef4997c0ab923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUpIsActive: 0
+  MoreTime: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1124922209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1308,7 @@ MonoBehaviour:
   cargoList: []
   cargo: 
   totalRemoved: 0
+  CartText: {fileID: 0}
 --- !u!212 &1124922211
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1469,7 +1584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 2.075, y: -177.11}
+  m_AnchoredPosition: {x: 2.075, y: -256.2}
   m_SizeDelta: {x: 799.95, y: 209.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1559656731
@@ -1499,7 +1614,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 80
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1625,6 +1740,7 @@ RectTransform:
   - {fileID: 778292014}
   - {fileID: 703522305}
   - {fileID: 68757928}
+  - {fileID: 292084740}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
