@@ -25,9 +25,11 @@ public class GameManagerScript : MonoBehaviour {
     [HideInInspector]
     public bool dead = false;
     public bool started = false;
-    private float forwardTicker;
+    public float forwardTicker;
     private Text timerText;
     private bool decisionMade = false;
+    public Cart cart;
+    public PowerUp powerUp;
 
     private DecisionScript decisionScr;
 
@@ -49,7 +51,8 @@ public class GameManagerScript : MonoBehaviour {
         // init ticker 
         forwardTicker = forwardTimer;
         timerText = GameObject.Find("Timer").GetComponent<Text>();
-
+        cart = GameObject.Find("Cart").GetComponent<Cart>();
+        powerUp = this.gameObject.GetComponent<PowerUp>();
         StartCoroutine("InitStart");
 
     }
@@ -117,10 +120,12 @@ public class GameManagerScript : MonoBehaviour {
         StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
+
     private void DefaultMode()
     {
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
     }
+
     public void RestartLevel()
     {
         choiceCounts = new int[choices.Length];
@@ -128,8 +133,6 @@ public class GameManagerScript : MonoBehaviour {
         StartCoroutine("InitStart");
         StartCoroutine("UpdateDecision");
     }
-
-
 
     public IEnumerator InitStart()
     {
@@ -147,6 +150,11 @@ public class GameManagerScript : MonoBehaviour {
         {
             forwardTicker = forwardTimer;
             decision = 0;
+            if(decisionScr.choice1.GetComponent<ChoiceScript>().description == "PowerUp")
+            {
+                powerUp.ActivatePowerUp();
+            }
+            cart.RemoveCargo();
             if (decisionsAlive == 0)
             {
                 decisionScr = Instantiate(decisions[Random.Range(0, decisions.Length)]).GetComponent<DecisionScript>();

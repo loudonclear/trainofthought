@@ -42,14 +42,31 @@ public class EndState : MonoBehaviour {
 
     public void OnGameEnd()
     {
+        GameObject.Find("Option 1 Text").GetComponent<Text>().text = "";
+        GameObject.Find("Option 2 Text").GetComponent<Text>().text = "";
+        GameObject.Find("Cart Text").GetComponent<Text>().text = "";
+
         choices = GameManager.choices;
         choiceCounts = GameManager.choiceCounts;
         GameOverText.text = GameOverLines[Random.Range(0, GameOverLines.Length)] + "\n\n" + "You ran over:";
+        bool ranOverSomething = false;
         for (int i = 0; i < choiceCounts.Length; i++)
         {
-            GameOverText.text = GameOverText.text + "\n" + choiceCounts[i] + " " + choices[i].GetComponent<ChoiceScript>().description;
+            if(choiceCounts[i] > 0)
+            {
+                ranOverSomething = true;
+                GameOverText.text = GameOverText.text + "\n" + choiceCounts[i] + " " 
+                    + choices[i].GetComponent<ChoiceScript>().description;
+            }
         }
-        GameOverText.text = GameOverText.text + "\n\n" + "Your Cart had " + CartObj.GetQuantity() + " " +
-            CartObj.GetCargo() + "\n" + "But " + CartObj.GetTotalRemoved() + " Died";
+        if(!ranOverSomething)
+        {
+            GameOverText.text = "You ran over \n absolutely nothing";
+        }
+        else
+        {
+            GameOverText.text = GameOverText.text + "\n\n" + "Your Cart had " + CartObj.GetQuantity() + " " +
+                CartObj.GetCargo() + "\n" + "But " + CartObj.GetTotalRemoved() + " Died";
+        }
     }
 }
