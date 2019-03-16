@@ -8,76 +8,89 @@ public class DecisionScript : MonoBehaviour {
     public enum trackDirection {LeftSplit, Fork, RightSplit};
 
     public trackDirection direction;
+    [Range(0, 100)]
+    public float chance = 80;
 
-    public GameObject[] choice1List, choice2List;
+    [System.Serializable]
+    public class choiceListWithProbability
+    {
+        public GameObject choice;
+        [Range(0, 100)]
+        public float Probability = 80;
+    }
+    public List<choiceListWithProbability> choiceList1 = new List<choiceListWithProbability>();
+    public List<choiceListWithProbability> choiceList2 = new List<choiceListWithProbability>();
 
-    private GameManagerScript sc;
+    private GameManagerScript gameManager;
 	private Text notification;
 	private Text option1Text, option2Text;
-    private GameObject option1, option2;
+    private GameObject option1GO, option2GO;
 
     [HideInInspector]
     public GameObject choice1, choice2;
 
 	void Start () {
-		sc = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
 		notification = GameObject.Find("Notification").GetComponent<Text>();
         notification.text = "";
         option1Text = GameObject.Find("Option 1 Text").GetComponent<Text>();
         option2Text = GameObject.Find("Option 2 Text").GetComponent<Text>();
 
-        option1 = GameObject.Find("Option 1 Container");
-        option2 = GameObject.Find("Option 2 Container");
+        option1GO = GameObject.Find("Option 1 Container");
+        option2GO = GameObject.Find("Option 2 Container");
 
-
-        choice1 = choice1List[Random.Range(0, choice1List.Length)];
-        choice2 = choice2List[Random.Range(0, choice2List.Length)];
+        choice1 = choiceList1[Random.Range(0, choiceList1.Count)].choice;
+        choice2 = choiceList2[Random.Range(0, choiceList2.Count)].choice;
 
         option1Text.text = choice1.GetComponent<ChoiceScript>().description;
         option2Text.text = choice2.GetComponent<ChoiceScript>().description;
 
-        option1.GetComponent<SpriteRenderer>().sprite = choice1.GetComponent<SpriteRenderer>().sprite;
-        option2.GetComponent<SpriteRenderer>().sprite = choice2.GetComponent<SpriteRenderer>().sprite;
+        option1GO.GetComponent<SpriteRenderer>().sprite = choice1.GetComponent<SpriteRenderer>().sprite;
+        option2GO.GetComponent<SpriteRenderer>().sprite = choice2.GetComponent<SpriteRenderer>().sprite;
     }
 	// Update is called once per frame
 	void Update () {
-		if (sc.decision == 1) 
-		{
-			notification.text = "You chose " + choice1.GetComponent<ChoiceScript>().description;
-			Destroy(this.gameObject);
-            sc.decisionsAlive--;
+		switch (gameManager.decision)
+        {
+        case 1:
+            notification.text = "You chose " + choice1.GetComponent<ChoiceScript>().description;
+            Destroy(this.gameObject);
+            gameManager.decisionsAlive--;
             if (choice1.GetComponent<ChoiceScript>().solid)
             {
                 RanIntoSolid();
             }
-        } else if (sc.decision == 2)
-		{
+            break;
+        case 2:
             notification.text = "You're dead";
             this.RunOffTracks();
             Destroy(this.gameObject);
-            sc.decisionsAlive--;
-        } else if (sc.decision == 3)
-		{
-			notification.text = "You chose " + choice2.GetComponent<ChoiceScript>().description;
+            gameManager.decisionsAlive--;
+            break;
+        case 3:
+            notification.text = "You chose " + choice2.GetComponent<ChoiceScript>().description;
             Destroy(this.gameObject);
-            sc.decisionsAlive--;
+            gameManager.decisionsAlive--;
             if (choice2.GetComponent<ChoiceScript>().solid)
             {
                 RanIntoSolid();
             }
+            break;
+        default:
+            break;
         }
 	}
 
     void RunOffTracks()
     {
-        sc.dead = true;
-        sc.started = false;
+        gameManager.dead = true;
+        gameManager.started = false;
     }
 
     void RanIntoSolid()
     {
-        sc.dead = true;
-        sc.started = false;
+        gameManager.dead = true;
+        gameManager.started = false;
     }
 
 }

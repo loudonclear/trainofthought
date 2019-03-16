@@ -44,10 +44,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  choice1List:
-  - {fileID: 6119901820465800049, guid: b705607d913f54810ae958845ffc321d, type: 3}
-  choice2List:
-  - {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
-  - {fileID: 1858704221166201662, guid: 9bbb52ccd7a604355a28ae2b50797578, type: 3}
+  chance: 80
+  choiceList1:
+  - choice: {fileID: 6119901820465800049, guid: b705607d913f54810ae958845ffc321d,
+      type: 3}
+    Probability: 100
+  choiceList2:
+  - choice: {fileID: 1858704221166201662, guid: 9bbb52ccd7a604355a28ae2b50797578,
+      type: 3}
+    Probability: 84.8
+  - choice: {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
+    Probability: 60.9
   choice1: {fileID: 0}
   choice2: {fileID: 0}
