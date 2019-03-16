@@ -45,14 +45,14 @@ public class PowerUp : MonoBehaviour
     {
         print("Called MoreTimePowerUp");
         MoreTime = true;
-        this.gameObject.GetComponent<GameManagerScript>().forwardTimer = 7;
+        this.gameObject.GetComponent<GameManagerScript>().forwardTicker = 6;
     }
 
     public void removeMoreTimePowerUp()
     {
         PowerUpIsActive = false;
         MoreTime = false;
-        this.gameObject.GetComponent<GameManagerScript>().forwardTimer = 5;
+        this.gameObject.GetComponent<GameManagerScript>().forwardTimer = 3;
     }
 
     public void ExtraLifePowerUp()
@@ -63,7 +63,7 @@ public class PowerUp : MonoBehaviour
     public void AddCargoToCartPowerUp()
     {
         print("Called AddCargoToCartPowerUp");
-        this.gameObject.GetComponent<Cart>().AddCargo(15);
+        GameObject.Find("Cart").GetComponent<Cart>().AddCargo(Random.Range(12,19));
     }
 
     public void JumpOverDecisionPowerUp()
