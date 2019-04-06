@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: DecisionObstaclePerson
   m_EditorClassIdentifier: 
   direction: 0
-  chance: 80
+  chance: 58
   choiceList1:
   - choice: {fileID: 1859414477811724, guid: df2f1cc1cccbb45f5ac88e726a3ff07f, type: 3}
     Probability: 100
@@ -53,30 +53,30 @@ MonoBehaviour:
     Probability: 0
   - choice: {fileID: 4789899708035042616, guid: cf8e2d9670c0040f5a541fb42e8c4c57,
       type: 3}
-    Probability: 45.5
+    Probability: 45
   - choice: {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
-    Probability: 77.2
+    Probability: 77
   - choice: {fileID: 3077494656507614786, guid: ed67d6a837eeb46daa43d637068a7ea2,
       type: 3}
-    Probability: 69.8
+    Probability: 69
   - choice: {fileID: 2695228693227246010, guid: f8aef10a41bdd42ac9a481dbb8bcee8b,
       type: 3}
-    Probability: 74.1
+    Probability: 74
   - choice: {fileID: 1904991222732660, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 3}
-    Probability: 56.6
+    Probability: 56
   - choice: {fileID: 1858704221166201662, guid: 9bbb52ccd7a604355a28ae2b50797578,
       type: 3}
-    Probability: 67.2
+    Probability: 67
   - choice: {fileID: 8272754337037314970, guid: 07f8f38cb805041c4b342ae7d6787bb7,
       type: 3}
-    Probability: 20.1
+    Probability: 20
   - choice: {fileID: 1442277342581790, guid: da0095fdce77b2f4b9d06fa5de7e6d23, type: 3}
-    Probability: 92.6
+    Probability: 92
   - choice: {fileID: 5693794071588103231, guid: ef2aa7d797a994173a9950e11e87709e,
       type: 3}
-    Probability: 25.9
+    Probability: 25
   - choice: {fileID: 6119901820465800049, guid: b705607d913f54810ae958845ffc321d,
       type: 3}
-    Probability: 42.3
+    Probability: 42
   choice1: {fileID: 0}
   choice2: {fileID: 0}

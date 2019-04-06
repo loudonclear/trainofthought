@@ -160,7 +160,7 @@ public class GameManagerScript : MonoBehaviour {
             cart.RemoveCargo();
             if (decisionsAlive == 0)
             {
-                decisionScr = Instantiate(decisions[Random.Range(0, decisions.Length)]).GetComponent<DecisionScript>();
+                decisionScr = Instantiate(GetDecisionWithProb().GetComponent<DecisionScript>());
                 decisionsAlive++;
             }
         }
@@ -177,5 +177,24 @@ public class GameManagerScript : MonoBehaviour {
             }
         }
         return -1;
+    }
+
+    GameObject GetDecisionWithProb()
+    {
+        System.Random rnd = new System.Random();
+        int totalWeight = decisions.Sum(t => t.GetComponent<DecisionScript>().chance); // Using LINQ for suming up all the values
+        int randomNumber = rnd.Next(0, totalWeight);
+
+        GameObject _myDecision = null;
+        foreach (GameObject item in decisions)
+        {
+            if (randomNumber < item.GetComponent<DecisionScript>().chance)
+            {
+                _myDecision = item;
+                break;
+            }
+            randomNumber -= item.GetComponent<DecisionScript>().chance;
+        }
+        return _myDecision;
     }
 }
