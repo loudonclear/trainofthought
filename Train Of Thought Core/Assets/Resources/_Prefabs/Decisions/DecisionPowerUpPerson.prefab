@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
+  possibleDir: 010000000000000002000000
   chance: 9
   choiceList1:
   - choice: {fileID: 2322555156008284497, guid: 95ffd00d99913cc48a9e1e57d757c113,

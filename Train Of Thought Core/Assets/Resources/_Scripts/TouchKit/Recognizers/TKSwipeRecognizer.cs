@@ -217,6 +217,7 @@ public class TKSwipeRecognizer : TKAbstractGestureRecognizer
         else if (swipeAngle >= 240f || swipeAngle <= 300f)
         {
             completedSwipeDirection = TKSwipeDirection.Up;
+            gameManager.StraightDecision();
             //ENABLE A POWER UP IF PLAYER HAS ONE
         }
 

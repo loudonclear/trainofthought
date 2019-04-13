@@ -6,6 +6,9 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour {
+    public delegate void ChoseDirection(int direction);
+    public static event ChoseDirection OnChoseDirection;
+
 	private float swipeDirectionH = 0f;
 	private float swipeDirectionV = 0f;
 
@@ -32,6 +35,8 @@ public class GameManagerScript : MonoBehaviour {
     public Cart cart;
     public PowerUp powerUp;
     public Button reset;
+    [HideInInspector]
+    public GameObject lastDecision;
 
     private DecisionScript decisionScr;
 
@@ -110,27 +115,29 @@ public class GameManagerScript : MonoBehaviour {
     public void LeftDecision()
     {
         if (dead) return;
+        OnChoseDirection(0);
         decision = 1;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
         choiceCounts[GetChoiceIndex(choices, decisionScr.choice1.GetComponent<ChoiceScript>())]++;
         StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
-
-    public void RightDecision()
+    public void StraightDecision()
     {
         if (dead) return;
-        decision = 3;
-        lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
-        choiceCounts[GetChoiceIndex(choices, decisionScr.choice2.GetComponent<ChoiceScript>())]++;
+        OnChoseDirection(1);
+        decision = 2;
+        lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
         StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
-    private void StraightDecision()
+    public void RightDecision()
     {
         if (dead) return;
-        decision = 2;
-        lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
+        OnChoseDirection(2);
+        decision = 3;
+        lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
+        choiceCounts[GetChoiceIndex(choices, decisionScr.choice2.GetComponent<ChoiceScript>())]++;
         StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
@@ -172,8 +179,15 @@ public class GameManagerScript : MonoBehaviour {
             cart.RemoveCargo();
             if (decisionsAlive == 0)
             {
-                decisionScr = Instantiate(GetDecisionWithProb().GetComponent<DecisionScript>());
+                GameObject _newDecision = GetDecisionWithProb();
+                if (_newDecision == lastDecision)
+                {
+                    Debug.Log("That decision just happened! Try again!");
+                    _newDecision = GetDecisionWithProb();
+                }
+                decisionScr = Instantiate(_newDecision.GetComponent<DecisionScript>());
                 decisionsAlive++;
+                lastDecision = _newDecision;
             }
         }
     }

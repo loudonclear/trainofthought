@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: DecisionObstaclePerson
   m_EditorClassIdentifier: 
   direction: 1
+  possibleDir: 010000000000000002000000
   chance: 15
   choiceList1:
   - choice: {fileID: 2695228693227246010, guid: f8aef10a41bdd42ac9a481dbb8bcee8b,
