@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour {
 	private float swipeDirectionH = 0f;
@@ -30,6 +31,7 @@ public class GameManagerScript : MonoBehaviour {
     private bool decisionMade = false;
     public Cart cart;
     public PowerUp powerUp;
+    public Button reset;
 
     private DecisionScript decisionScr;
 
@@ -57,20 +59,29 @@ public class GameManagerScript : MonoBehaviour {
 
     }
 
-	void Update() {
+    void Update() {
         // get swipe direction
-		swipeDirectionH = Input.GetAxis("Horizontal");
-		swipeDirectionV = Input.GetAxis("Vertical");
+        swipeDirectionH = Input.GetAxis("Horizontal");
+        swipeDirectionV = Input.GetAxis("Vertical");
 
         // update timer
         if (!decisionMade && !dead && started)
         {
-            forwardTicker -= (1f/60f);
+            forwardTicker -= Time.deltaTime;
             if (forwardTicker < 0f)
             {
                 forwardTicker = 0;
             }
             timerText.text = forwardTicker.ToString("F2");
+        }
+
+        if (dead)
+        {
+            reset.gameObject.SetActive(true);
+        }
+        else
+        {
+            reset.gameObject.SetActive(false);
         }
     }
 
@@ -131,10 +142,11 @@ public class GameManagerScript : MonoBehaviour {
 
     public void RestartLevel()
     {
-        choiceCounts = new int[choices.Length];
-        dead = false;
-        StartCoroutine("InitStart");
-        StartCoroutine("UpdateDecision");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //choiceCounts = new int[choices.Length];
+        //dead = false;
+        //StartCoroutine("InitStart");
+        //StartCoroutine("UpdateDecision");
     }
 
     public IEnumerator InitStart()
