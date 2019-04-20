@@ -118,7 +118,6 @@ public class GameManagerScript : MonoBehaviour {
         OnChoseDirection(0);
         decision = 1;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
-        choiceCounts[GetChoiceIndex(choices, decisionScr.choice1.GetComponent<ChoiceScript>())]++;
         StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
@@ -137,7 +136,6 @@ public class GameManagerScript : MonoBehaviour {
         OnChoseDirection(2);
         decision = 3;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
-        choiceCounts[GetChoiceIndex(choices, decisionScr.choice2.GetComponent<ChoiceScript>())]++;
         StartCoroutine("UpdateDecision");
         decisionMade = true;
     }
@@ -193,7 +191,7 @@ public class GameManagerScript : MonoBehaviour {
     }
 
     // compare choice local variable description to the other choice description, if true return 
-    int GetChoiceIndex(GameObject[] choices, ChoiceScript choice)
+    public int GetChoiceIndex(GameObject[] choices, ChoiceScript choice)
     {
         for (int i = 0; i < choices.Length; i++)
         {
