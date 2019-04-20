@@ -46,14 +46,18 @@ MonoBehaviour:
   direction: 0
   possibleDir: 010000000000000002000000
   chance: 50
+  choiceSwitchable: 1
   choiceList1:
   - choice: {fileID: 1858704221166201662, guid: 9bbb52ccd7a604355a28ae2b50797578,
       type: 3}
     Probability: 81
+    maxDuplicates: 3
   - choice: {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
     Probability: 89
+    maxDuplicates: 3
   choiceList2:
   - choice: {fileID: 1904991222732660, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 3}
     Probability: 100
+    maxDuplicates: 5
   choice1: {fileID: 0}
   choice2: {fileID: 0}

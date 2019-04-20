@@ -46,41 +46,55 @@ MonoBehaviour:
   direction: 1
   possibleDir: 010000000000000002000000
   chance: 14
+  choiceSwitchable: 1
   choiceList1:
   - choice: {fileID: 1165098891227670, guid: 339521d995c8f8d4697d8595e82381ad, type: 3}
     Probability: 93
+    maxDuplicates: 5
   - choice: {fileID: 4603473744307760189, guid: b288539e248cb47bb9229b393179d9bd,
       type: 3}
     Probability: 85
+    maxDuplicates: 5
   - choice: {fileID: 4899794641535901368, guid: 21497b209392b41bcbab7aec0cb3c5f7,
       type: 3}
     Probability: 43
+    maxDuplicates: 5
   choiceList2:
   - choice: {fileID: 381471431549280775, guid: 83335eecfbc414d649d3d1be95f0adac, type: 3}
     Probability: 30
+    maxDuplicates: 2
   - choice: {fileID: 5693794071588103231, guid: ef2aa7d797a994173a9950e11e87709e,
       type: 3}
     Probability: 27
+    maxDuplicates: 2
   - choice: {fileID: 2695228693227246010, guid: f8aef10a41bdd42ac9a481dbb8bcee8b,
       type: 3}
     Probability: 63
+    maxDuplicates: 2
   - choice: {fileID: 3077494656507614786, guid: ed67d6a837eeb46daa43d637068a7ea2,
       type: 3}
     Probability: 69
+    maxDuplicates: 5
   - choice: {fileID: 1904991222732660, guid: a06ab37119dcf4b2f81a8a37e1a8be2c, type: 3}
     Probability: 28
+    maxDuplicates: 5
   - choice: {fileID: 1442277342581790, guid: da0095fdce77b2f4b9d06fa5de7e6d23, type: 3}
     Probability: 78
+    maxDuplicates: 3
   - choice: {fileID: 6119901820465800049, guid: b705607d913f54810ae958845ffc321d,
       type: 3}
     Probability: 14
+    maxDuplicates: 2
   - choice: {fileID: 4789899708035042616, guid: cf8e2d9670c0040f5a541fb42e8c4c57,
       type: 3}
     Probability: 17
+    maxDuplicates: 4
   - choice: {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
     Probability: 30
+    maxDuplicates: 2
   - choice: {fileID: 1858704221166201662, guid: 9bbb52ccd7a604355a28ae2b50797578,
       type: 3}
     Probability: 6
+    maxDuplicates: 2
   choice1: {fileID: 0}
   choice2: {fileID: 0}

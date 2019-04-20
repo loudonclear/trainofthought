@@ -22,6 +22,8 @@ public class DecisionScript : MonoBehaviour {
         public GameObject choice;
         [Range(0, 100)]
         public int Probability = 80;
+        [Range(0, 5)]
+        public int maxDuplicates = 1;
     }
     public List<choiceListWithProbability> choiceList1 = new List<choiceListWithProbability>();
     public List<choiceListWithProbability> choiceList2 = new List<choiceListWithProbability>();
@@ -34,6 +36,9 @@ public class DecisionScript : MonoBehaviour {
 
     [HideInInspector]
     public GameObject choice1, choice2;
+    int c1num = 1;
+    int c2num = 1;
+    public static int picked;
 
     private void Awake()
     {
@@ -56,13 +61,23 @@ public class DecisionScript : MonoBehaviour {
         notification.text = "";
         if (Random.value >= 0.5f && choiceSwitchable)
         {
-            choice1 = GetChoiceWithProb(choiceList2);
-            choice2 = GetChoiceWithProb(choiceList1);
+            choiceListWithProbability ch1 = GetChoiceWithProb(choiceList1);
+            choiceListWithProbability ch2 = GetChoiceWithProb(choiceList2);
+
+            choice1 = ch2.choice;
+            choice2 = ch1.choice;
+            c1num = Random.Range(1, ch2.maxDuplicates);
+            c2num = Random.Range(1, ch1.maxDuplicates);
         }
         else
         {
-            choice1 = GetChoiceWithProb(choiceList1);
-            choice2 = GetChoiceWithProb(choiceList2);
+            choiceListWithProbability ch1 = GetChoiceWithProb(choiceList1);
+            choiceListWithProbability ch2 = GetChoiceWithProb(choiceList2);
+
+            choice1 = ch1.choice;
+            choice2 = ch2.choice;
+            c1num = Random.Range(1, ch1.maxDuplicates);
+            c2num = Random.Range(1, ch2.maxDuplicates);
         }
 
         GameObject t1, t2, t3, c1, c2, c3;
@@ -106,18 +121,14 @@ public class DecisionScript : MonoBehaviour {
         //c1.GetComponent<SpriteRenderer>().enabled = true;
         //c2.GetComponent<SpriteRenderer>().enabled = true;
         //c3.GetComponent<SpriteRenderer>().enabled = false;
-        t1.GetComponentInChildren<Text>().text = choice1.GetComponent<ChoiceScript>().description;
-        t2.GetComponentInChildren<Text>().text = choice2.GetComponent<ChoiceScript>().description;
+        t1.GetComponentInChildren<Text>().text = c1num.ToString() + " " + choice1.GetComponent<ChoiceScript>().description;
+        t2.GetComponentInChildren<Text>().text = c2num.ToString() + " " + choice2.GetComponent<ChoiceScript>().description;
         t3.GetComponentInChildren<Text>().text = "";
         //c1.GetComponent<SpriteRenderer>().sprite = choice1.GetComponent<SpriteRenderer>().sprite;
         //c2.GetComponent<SpriteRenderer>().sprite = choice2.GetComponent<SpriteRenderer>().sprite;
         //c3.GetComponent<SpriteRenderer>().sprite = null;
 
-        int c1num = 5;
-        int c2num = 5;
-
         SpriteRenderer[] c1s = c1.GetComponentsInChildren<SpriteRenderer>();
-        Debug.Log(c1s.Length);
         int i;
         for (i = 0; i < c1num; i++)
         {
@@ -166,13 +177,15 @@ public class DecisionScript : MonoBehaviour {
         switch (_processedDecision)
         {
             case 0:
-                notification.text = "You chose " + choice1.GetComponent<ChoiceScript>().description;
+                notification.text = "You chose " + c1num.ToString() + " " + choice1.GetComponent<ChoiceScript>().description;
+                picked = c1num;
                 gameManager.decisionsAlive--;
                 if (choice1.GetComponent<ChoiceScript>().solid)
                 {
                     RanIntoSolid();
                 }
                 RemoveThisDecision();
+                gameManager.choiceCounts[gameManager.GetChoiceIndex(gameManager.choices, choice1.GetComponent<ChoiceScript>())] += picked;
                 break;
             case 1:
                 notification.text = "You ran off the tracks";
@@ -181,13 +194,15 @@ public class DecisionScript : MonoBehaviour {
                 RemoveThisDecision();
                 break;
             case 2:
-                notification.text = "You chose " + choice2.GetComponent<ChoiceScript>().description;
+                notification.text = "You chose " + c2num.ToString() + " " + choice2.GetComponent<ChoiceScript>().description;
+                picked = c2num;
                 gameManager.decisionsAlive--;
                 if (choice2.GetComponent<ChoiceScript>().solid)
                 {
                     RanIntoSolid();
                 }
                 RemoveThisDecision();
+                gameManager.choiceCounts[gameManager.GetChoiceIndex(gameManager.choices, choice2.GetComponent<ChoiceScript>())] += picked;
                 break;
             default:
                 break;
@@ -206,23 +221,21 @@ public class DecisionScript : MonoBehaviour {
         gameManager.started = false;
     }
 
-    GameObject GetChoiceWithProb( List<choiceListWithProbability> _choiceList)
+    choiceListWithProbability GetChoiceWithProb( List<choiceListWithProbability> _choiceList)
     {
         System.Random rnd = new System.Random();
         int totalWeight = _choiceList.Sum(t => t.Probability); // Using LINQ for suming up all the values
         int randomNumber = rnd.Next(0, totalWeight);
 
-        GameObject _myChoice = null;
         foreach (choiceListWithProbability item in _choiceList)
         {
             if (randomNumber < item.Probability)
             {
-                _myChoice = item.choice;
-                break;
+                return item;
             }
             randomNumber -= item.Probability;
         }
-        return _myChoice;
+        return _choiceList[0];
     }
 
     void RemoveThisDecision()
