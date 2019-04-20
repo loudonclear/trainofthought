@@ -7,5 +7,4 @@ using UnityEngine.UI;
 public class ChoiceScript : MonoBehaviour {
     public bool solid = false;
     public string description;
-
 }

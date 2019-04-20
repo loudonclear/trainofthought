@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Rabbit
+  maxDuplicates: 5

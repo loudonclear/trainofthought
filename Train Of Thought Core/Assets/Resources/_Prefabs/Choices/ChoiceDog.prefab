@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c835d50bb83461ab11de7370658ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  solid: 0
   description: Dog
+  maxDuplicates: 5
 --- !u!212 &212348352762582064
 SpriteRenderer:
   m_ObjectHideFlags: 0
