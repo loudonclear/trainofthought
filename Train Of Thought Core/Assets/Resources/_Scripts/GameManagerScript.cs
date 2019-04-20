@@ -83,6 +83,26 @@ public class GameManagerScript : MonoBehaviour {
         if (dead)
         {
             reset.gameObject.SetActive(true);
+            GameObject option1Text = GameObject.Find("Option 1 Panel");
+            GameObject option2Text = GameObject.Find("Option 2 Panel");
+            GameObject option3Text = GameObject.Find("Option 3 Panel");
+            GameObject option1GO = GameObject.Find("Option 1 Container");
+            GameObject option2GO = GameObject.Find("Option 2 Container");
+            GameObject option3GO = GameObject.Find("Option 3 Container");
+
+            option1Text.GetComponentInChildren<Text>().text = "";
+            option2Text.GetComponentInChildren<Text>().text = "";
+            option3Text.GetComponentInChildren<Text>().text = "";
+
+            SpriteRenderer[] c1s = option1GO.GetComponentsInChildren<SpriteRenderer>();
+            SpriteRenderer[] c2s = option2GO.GetComponentsInChildren<SpriteRenderer>();
+            SpriteRenderer[] c3s = option3GO.GetComponentsInChildren<SpriteRenderer>();
+            for (int i = 0; i < 5; i++)
+            {
+                c1s[i].sprite = null;
+                c2s[i].sprite = null;
+                c3s[i].sprite = null;
+            }
         }
         else
         {
