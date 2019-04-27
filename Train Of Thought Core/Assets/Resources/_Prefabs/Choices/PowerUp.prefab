@@ -93,4 +93,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solid: 0
-  description: PowerUp
+  description: Timer Power Up

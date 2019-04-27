@@ -17,8 +17,8 @@ public class Cart : MonoBehaviour {
         totalRemoved = 0;
         cargoList = new string[]{"People", "Rabbits", "Lemons", "Dogs", "Bricks"};
         cargo = cargoList[Random.Range(0, cargoList.Length-1)];
-        CartText = GameObject.Find("Cart Text").GetComponent<Text>();
-        CartText.text = "Cargo Remaining\n" + quantity + " " + cargo;
+        //CartText = GameObject.Find("Cart Text").GetComponent<Text>();
+        //CartText.text = "Cargo Remaining\n" + quantity + " " + cargo;
 	}
 	
 	// Update is called once per frame

@@ -31,8 +31,8 @@ public class GameManagerScript : MonoBehaviour {
     public bool started = false;
     public float forwardTicker;
     private Text timerText;
+    public Slider timerSlider;
     private bool decisionMade = false;
-    public Cart cart;
     public PowerUp powerUp;
     public Button reset;
     [HideInInspector]
@@ -58,7 +58,6 @@ public class GameManagerScript : MonoBehaviour {
         // init ticker 
         forwardTicker = forwardTimer;
         timerText = GameObject.Find("Timer").GetComponent<Text>();
-        cart = GameObject.Find("Cart").GetComponent<Cart>();
         powerUp = this.gameObject.GetComponent<PowerUp>();
         StartCoroutine("InitStart");
 
@@ -77,6 +76,7 @@ public class GameManagerScript : MonoBehaviour {
             {
                 forwardTicker = 0;
             }
+            timerSlider.value = forwardTicker / forwardTimer;
             timerText.text = forwardTicker.ToString("F2");
         }
 
@@ -135,6 +135,7 @@ public class GameManagerScript : MonoBehaviour {
     public void LeftDecision()
     {
         if (dead) return;
+        if (OnChoseDirection == null) return;
         OnChoseDirection(0);
         decision = 1;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
@@ -144,6 +145,7 @@ public class GameManagerScript : MonoBehaviour {
     public void StraightDecision()
     {
         if (dead) return;
+        if (OnChoseDirection == null) return;
         OnChoseDirection(1);
         decision = 2;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
@@ -153,6 +155,7 @@ public class GameManagerScript : MonoBehaviour {
     public void RightDecision()
     {
         if (dead) return;
+        if (OnChoseDirection == null) return;
         OnChoseDirection(2);
         decision = 3;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
@@ -194,13 +197,12 @@ public class GameManagerScript : MonoBehaviour {
             {
                 powerUp.ActivatePowerUp();
             }
-            cart.RemoveCargo();
             if (decisionsAlive == 0)
             {
                 GameObject _newDecision = GetDecisionWithProb();
                 if (_newDecision == lastDecision)
                 {
-                    Debug.Log("That decision just happened! Try again!");
+                    //Debug.Log("That decision just happened! Try again!");
                     _newDecision = GetDecisionWithProb();
                 }
                 decisionScr = Instantiate(_newDecision.GetComponent<DecisionScript>());

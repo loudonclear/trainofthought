@@ -38,7 +38,26 @@ public class DecisionScript : MonoBehaviour {
     public GameObject choice1, choice2;
     int c1num = 1;
     int c2num = 1;
+    string t1Text, t2Text;
     public static int picked;
+
+    private string plural(string input)
+    {
+        if (input.EndsWith("man"))
+        {
+            input = input.Replace("man", "men");
+        }
+        else if (input.EndsWith("Person"))
+        {
+            input = input.Replace("Person", "People");
+        }
+        else
+        {
+            input += "s";
+        }
+
+        return input;
+    }
 
     private void Awake()
     {
@@ -118,15 +137,23 @@ public class DecisionScript : MonoBehaviour {
         t1.GetComponent<Image>().enabled = true;
         t2.GetComponent<Image>().enabled = true;
         t3.GetComponent<Image>().enabled = false;
-        //c1.GetComponent<SpriteRenderer>().enabled = true;
-        //c2.GetComponent<SpriteRenderer>().enabled = true;
-        //c3.GetComponent<SpriteRenderer>().enabled = false;
-        t1.GetComponentInChildren<Text>().text = c1num.ToString() + " " + choice1.GetComponent<ChoiceScript>().description;
-        t2.GetComponentInChildren<Text>().text = c2num.ToString() + " " + choice2.GetComponent<ChoiceScript>().description;
+
+        t1Text = c1num.ToString() + " " + choice1.GetComponent<ChoiceScript>().description;
+        t2Text = c2num.ToString() + " " + choice2.GetComponent<ChoiceScript>().description;
+
+        if (c1num > 1)
+        {
+            t1Text = plural(t1Text);
+        }
+
+        if (c2num > 1)
+        {
+            t2Text = plural(t2Text);
+        }
+
+        t1.GetComponentInChildren<Text>().text = t1Text;
+        t2.GetComponentInChildren<Text>().text = t2Text;
         t3.GetComponentInChildren<Text>().text = "";
-        //c1.GetComponent<SpriteRenderer>().sprite = choice1.GetComponent<SpriteRenderer>().sprite;
-        //c2.GetComponent<SpriteRenderer>().sprite = choice2.GetComponent<SpriteRenderer>().sprite;
-        //c3.GetComponent<SpriteRenderer>().sprite = null;
 
         SpriteRenderer[] c1s = c1.GetComponentsInChildren<SpriteRenderer>();
         int i;
@@ -177,7 +204,7 @@ public class DecisionScript : MonoBehaviour {
         switch (_processedDecision)
         {
             case 0:
-                notification.text = "You chose " + c1num.ToString() + " " + choice1.GetComponent<ChoiceScript>().description;
+                notification.text = "You chose " + t1Text;
                 picked = c1num;
                 gameManager.decisionsAlive--;
                 if (choice1.GetComponent<ChoiceScript>().solid)
@@ -194,7 +221,7 @@ public class DecisionScript : MonoBehaviour {
                 RemoveThisDecision();
                 break;
             case 2:
-                notification.text = "You chose " + c2num.ToString() + " " + choice2.GetComponent<ChoiceScript>().description;
+                notification.text = "You chose " + t2Text;
                 picked = c2num;
                 gameManager.decisionsAlive--;
                 if (choice2.GetComponent<ChoiceScript>().solid)

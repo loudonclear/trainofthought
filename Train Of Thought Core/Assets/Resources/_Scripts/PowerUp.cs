@@ -11,31 +11,15 @@ public class PowerUp : MonoBehaviour
     void Start()
     {
         PowerUpIsActive = false;
-        bool MoreTime = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ActivatePowerUp()
     {
-        int PowerUpRandom = Random.Range(0,5);
+        int PowerUpRandom = Random.Range(0,1);
         switch(PowerUpRandom)
         {
             case 0:
                 this.MoreTimePowerUp();
-                break;
-            case 1:
-                this.ExtraLifePowerUp();
-                break;
-            case 3:
-                this.AddCargoToCartPowerUp();
-                break;
-            case 4:
-                this.JumpOverDecisionPowerUp();
                 break;
         }
         PowerUpIsActive = true;
@@ -63,7 +47,7 @@ public class PowerUp : MonoBehaviour
     public void AddCargoToCartPowerUp()
     {
         print("Called AddCargoToCartPowerUp");
-        GameObject.Find("Cart").GetComponent<Cart>().AddCargo(Random.Range(12,19));
+        //GameObject.Find("Cart").GetComponent<Cart>().AddCargo(Random.Range(12,19));
     }
 
     public void JumpOverDecisionPowerUp()

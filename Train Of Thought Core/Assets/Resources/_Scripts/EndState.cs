@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EndState : MonoBehaviour {
 
     public GameManagerScript GameManager;
-    public Cart CartObj;
+    //public Cart CartObj;
     public Text GameOverText;
     private GameObject[] choices;
     private int[] choiceCounts;
@@ -16,7 +16,7 @@ public class EndState : MonoBehaviour {
     // Use this for initialization
     void Start () {
         GameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
-        CartObj = GameObject.Find("Cart").GetComponent<Cart>();
+        //CartObj = GameObject.Find("Cart").GetComponent<Cart>();
         if (GameOverText == null)
         {
             GameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
@@ -44,7 +44,7 @@ public class EndState : MonoBehaviour {
     {
         GameObject.Find("Option 1 Text").GetComponent<Text>().text = "";
         GameObject.Find("Option 2 Text").GetComponent<Text>().text = "";
-        GameObject.Find("Cart Text").GetComponent<Text>().text = "";
+        //GameObject.Find("Cart Text").GetComponent<Text>().text = "";
 
         choices = GameManager.choices;
         choiceCounts = GameManager.choiceCounts;
@@ -62,11 +62,6 @@ public class EndState : MonoBehaviour {
         if(!ranOverSomething)
         {
             GameOverText.text = "You ran over \n absolutely nothing";
-        }
-        else
-        {
-            GameOverText.text = GameOverText.text + "\n\n" + "Your Cart had " + CartObj.GetQuantity() + " " +
-                CartObj.GetCargo() + "\n" + "But " + CartObj.GetTotalRemoved() + " Died";
         }
     }
 }
