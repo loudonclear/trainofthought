@@ -25,18 +25,20 @@ public class GameManagerScript : MonoBehaviour {
     public GameObject[] choices;
     public int[] choiceCounts;
 	public float updateDecisionDelay = 2f;
-    public float forwardTimer = 5f;
+    public float forwardTimer = 4f;
     [HideInInspector]
     public bool dead = false;
     public bool started = false;
     public float forwardTicker;
     private Text timerText;
     public Slider timerSlider;
+    public Image sliderBar;
     private bool decisionMade = false;
     public PowerUp powerUp;
     public Button reset;
     [HideInInspector]
     public GameObject lastDecision;
+    private int decisionCount = 0;
 
     private DecisionScript decisionScr;
 
@@ -79,6 +81,8 @@ public class GameManagerScript : MonoBehaviour {
             timerSlider.value = forwardTicker / forwardTimer;
             timerText.text = forwardTicker.ToString("F2");
         }
+        timerText.color = Color.Lerp(timerText.color, Color.white, 1.6f * Time.deltaTime);
+        sliderBar.color = Color.Lerp(timerText.color, Color.white, 3 * Time.deltaTime);
 
         if (dead)
         {
@@ -132,10 +136,25 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
+    private void TimerDec()
+    {
+        decisionCount++;
+        if (decisionCount == 30 || decisionCount == 20 || decisionCount == 10)
+        {
+            forwardTimer--;
+            timerText.color = Color.red;
+        } else if (decisionCount == 40 || decisionCount == 50)
+        {
+            forwardTimer -= 0.5f;
+            timerText.color = Color.red;
+        }
+    }
+
     public void LeftDecision()
     {
         if (dead) return;
         if (OnChoseDirection == null) return;
+        TimerDec();
         OnChoseDirection(0);
         decision = 1;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, leftState);
@@ -146,6 +165,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         if (dead) return;
         if (OnChoseDirection == null) return;
+        TimerDec();
         OnChoseDirection(1);
         decision = 2;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, defaultState);
@@ -156,6 +176,7 @@ public class GameManagerScript : MonoBehaviour {
     {
         if (dead) return;
         if (OnChoseDirection == null) return;
+        TimerDec();
         OnChoseDirection(2);
         decision = 3;
         lever.eulerAngles = new Vector3(lever.transform.eulerAngles.x, lever.transform.eulerAngles.y, rightState);
