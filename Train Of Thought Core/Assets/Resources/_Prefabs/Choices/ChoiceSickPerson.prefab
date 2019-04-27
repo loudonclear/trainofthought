@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Sick Person
+  decisionSound: {fileID: 8300000, guid: a4be09f3e7db443188a0ac10ea175cae, type: 3}

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class MusicClass : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public static MusicClass instance = null;
+    public static AudioManager instance = null;
 
-    private AudioSource _audioSource;
+    public AudioSource music;
+    public AudioSource decisionSound;
 
     void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
         //Check if instance already exists
         if (instance == null)
 
@@ -25,4 +25,14 @@ public class MusicClass : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void PlayDecisionSound( AudioClip audio)
+    {
+        if (decisionSound.isPlaying)
+        {
+            decisionSound.Stop();
+        }
+        decisionSound.clip = audio;
+        decisionSound.Play();
+
     }
+}

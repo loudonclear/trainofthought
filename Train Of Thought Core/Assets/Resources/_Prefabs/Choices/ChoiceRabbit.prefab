@@ -94,4 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Rabbit
-  maxDuplicates: 5
+  decisionSound: {fileID: 8300000, guid: 0e58024ff87dc413da90c87f2af688a6, type: 3}

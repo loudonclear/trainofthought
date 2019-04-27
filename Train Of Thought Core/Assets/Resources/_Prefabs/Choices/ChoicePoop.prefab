@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Poop
+  decisionSound: {fileID: 8300000, guid: 29743c51524964137b3841e1b9ef2c9b, type: 3}

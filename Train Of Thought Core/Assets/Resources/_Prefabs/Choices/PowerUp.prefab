@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: PowerUp
+  decisionSound: {fileID: 8300000, guid: b80d84f1c41cf437fb2626bde6ce1766, type: 3}

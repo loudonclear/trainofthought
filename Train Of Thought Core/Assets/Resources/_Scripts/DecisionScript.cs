@@ -29,6 +29,7 @@ public class DecisionScript : MonoBehaviour {
     public List<choiceListWithProbability> choiceList2 = new List<choiceListWithProbability>();
 
     private GameManagerScript gameManager;
+    private AudioManager audioManager;
     private Track track;
     private Text notification;
     private GameObject option1Text, option2Text, option3Text;
@@ -42,6 +43,7 @@ public class DecisionScript : MonoBehaviour {
 
     private void Awake()
     {
+        audioManager = GameObject.Find("Audio Source").GetComponent<AudioManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         track = GameObject.Find("Track").GetComponent<Track>();
         GameManagerScript.OnChoseDirection += Decide;
@@ -184,6 +186,7 @@ public class DecisionScript : MonoBehaviour {
                 {
                     RanIntoSolid();
                 }
+                audioManager.PlayDecisionSound(choice1.GetComponent<ChoiceScript>().decisionSound);
                 RemoveThisDecision();
                 gameManager.choiceCounts[gameManager.GetChoiceIndex(gameManager.choices, choice1.GetComponent<ChoiceScript>())] += picked;
                 break;
@@ -201,6 +204,7 @@ public class DecisionScript : MonoBehaviour {
                 {
                     RanIntoSolid();
                 }
+                audioManager.PlayDecisionSound(choice2.GetComponent<ChoiceScript>().decisionSound);
                 RemoveThisDecision();
                 gameManager.choiceCounts[gameManager.GetChoiceIndex(gameManager.choices, choice2.GetComponent<ChoiceScript>())] += picked;
                 break;

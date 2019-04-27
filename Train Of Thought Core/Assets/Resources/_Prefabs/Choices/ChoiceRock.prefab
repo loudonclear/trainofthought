@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 1
   description: Rock
+  decisionSound: {fileID: 8300000, guid: 80aaa3d9d53174b5a8fd0756e14906fc, type: 3}
