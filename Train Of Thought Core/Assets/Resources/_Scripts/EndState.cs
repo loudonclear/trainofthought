@@ -40,6 +40,28 @@ public class EndState : MonoBehaviour {
         }
     }
 
+    private string plural(string input)
+    {
+        if (input.EndsWith("man"))
+        {
+            input = input.Replace("man", "men");
+        }
+        else if (input.EndsWith("Person"))
+        {
+            input = input.Replace("Person", "People");
+        }
+        else if (input.EndsWith("Baby"))
+        {
+            input = input.Replace("Baby", "Babies");
+        }
+        else
+        {
+            input += "s";
+        }
+
+        return input;
+    }
+
     public void OnGameEnd()
     {
         GameObject.Find("Option 1 Text").GetComponent<Text>().text = "";
@@ -55,8 +77,13 @@ public class EndState : MonoBehaviour {
             if(choiceCounts[i] > 0)
             {
                 ranOverSomething = true;
+                string desc = choices[i].GetComponent<ChoiceScript>().description;
+                if (choiceCounts[i] > 1)
+                {
+                    desc = plural(desc);
+                } 
                 GameOverText.text = GameOverText.text + "\n" + choiceCounts[i] + " " 
-                    + choices[i].GetComponent<ChoiceScript>().description;
+                    + desc;
             }
         }
         if(!ranOverSomething)

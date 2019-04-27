@@ -52,6 +52,10 @@ public class DecisionScript : MonoBehaviour {
         {
             input = input.Replace("Person", "People");
         }
+        else if (input.EndsWith("Baby"))
+        {
+            input = input.Replace("Baby", "Babies");
+        }
         else
         {
             input += "s";
