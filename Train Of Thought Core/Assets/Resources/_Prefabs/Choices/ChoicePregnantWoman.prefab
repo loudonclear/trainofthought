@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Pregnant Woman
+  decisionSound: {fileID: 8300000, guid: e42800e2b8965400fa2bb5b1fce68ec7, type: 3}

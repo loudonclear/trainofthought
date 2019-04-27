@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8935107037509097273}
   - component: {fileID: 7361424510636097627}
   m_Layer: 0
-  m_Name: ChoiceEvilPerson (1)
+  m_Name: ChoiceEvilPerson
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Evil Person
+  decisionSound: {fileID: 8300000, guid: f2ba36bedee434be48b00fcd3e32058f, type: 3}

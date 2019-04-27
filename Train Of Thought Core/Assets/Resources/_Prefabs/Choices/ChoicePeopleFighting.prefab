@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: People Fighting
+  decisionSound: {fileID: 8300000, guid: 504c6c8eaed534fe0a88e6b3c5d31ce8, type: 3}

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Person
-  maxDuplicates: 5
+  decisionSound: {fileID: 8300000, guid: a54bde19883a543c68a1ef6bf2d2ad62, type: 3}
 --- !u!212 &212166263018218952
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -94,4 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Baby
-  maxDuplicates: 5
+  decisionSound: {fileID: 8300000, guid: 12af5447b8a9446f4b5ebb4dad11c6f5, type: 3}

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Dog
-  maxDuplicates: 5
+  decisionSound: {fileID: 8300000, guid: 463e579b4377347e186e2a6b1882dcba, type: 3}
 --- !u!212 &212348352762582064
 SpriteRenderer:
   m_ObjectHideFlags: 0

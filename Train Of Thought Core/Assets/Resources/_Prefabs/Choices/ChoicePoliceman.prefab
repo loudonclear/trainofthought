@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Policeman
+  decisionSound: {fileID: 8300000, guid: a54bde19883a543c68a1ef6bf2d2ad62, type: 3}

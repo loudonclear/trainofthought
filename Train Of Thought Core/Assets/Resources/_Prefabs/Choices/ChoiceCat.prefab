@@ -94,4 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Cat
-  maxDuplicates: 5
+  decisionSound: {fileID: 8300000, guid: a87719509708d43aeb0d803d5e5483ed, type: 3}

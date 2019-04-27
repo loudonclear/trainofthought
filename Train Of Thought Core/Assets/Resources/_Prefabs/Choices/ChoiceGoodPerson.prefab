@@ -94,3 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Good Person
+  decisionSound: {fileID: 8300000, guid: 80f2e34baf2b848a9851d25f494cf607, type: 3}
