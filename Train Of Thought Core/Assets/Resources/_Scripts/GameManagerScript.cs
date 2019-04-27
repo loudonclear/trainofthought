@@ -87,6 +87,7 @@ public class GameManagerScript : MonoBehaviour {
         if (dead)
         {
             reset.gameObject.SetActive(true);
+            decisionCount = 0;
             GameObject option1Text = GameObject.Find("Option 1 Panel");
             GameObject option2Text = GameObject.Find("Option 2 Panel");
             GameObject option3Text = GameObject.Find("Option 3 Panel");
@@ -139,15 +140,16 @@ public class GameManagerScript : MonoBehaviour {
     private void TimerDec()
     {
         decisionCount++;
-        if (decisionCount == 30 || decisionCount == 20 || decisionCount == 10)
+        if (decisionCount == 20 || decisionCount == 10)
         {
             forwardTimer--;
             timerText.color = Color.red;
-        } else if (decisionCount == 40 || decisionCount == 50)
+        } else if (decisionCount == 30 || decisionCount == 40)
         {
             forwardTimer -= 0.5f;
             timerText.color = Color.red;
         }
+        Debug.Log(decisionCount);
     }
 
     public void LeftDecision()
