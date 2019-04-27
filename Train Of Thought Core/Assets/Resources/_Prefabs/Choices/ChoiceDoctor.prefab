@@ -94,4 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Doctor
-  decisionSound: {fileID: 8300000, guid: 40ff2d4b276e44789834963bead81bea, type: 3}
+  decisionSound: {fileID: 8300000, guid: a54bde19883a543c68a1ef6bf2d2ad62, type: 3}

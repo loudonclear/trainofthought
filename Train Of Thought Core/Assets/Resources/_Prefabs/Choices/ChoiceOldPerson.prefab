@@ -94,4 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Old Person
-  decisionSound: {fileID: 8300000, guid: 126ed5356194a4f6bbe63ff427f0ef57, type: 3}
+  decisionSound: {fileID: 8300000, guid: 654dd163cda19408eb3f3a4e711cb756, type: 3}

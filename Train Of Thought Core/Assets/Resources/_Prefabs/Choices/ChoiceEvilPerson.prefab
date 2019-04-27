@@ -94,4 +94,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solid: 0
   description: Evil Person
-  decisionSound: {fileID: 8300000, guid: f2ba36bedee434be48b00fcd3e32058f, type: 3}
+  decisionSound: {fileID: 8300000, guid: cdcbb9a5c148d41f39c846cf4fed05ec, type: 3}
