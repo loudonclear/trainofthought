@@ -49,10 +49,10 @@ MonoBehaviour:
   choiceSwitchable: 1
   choiceList1:
   - choice: {fileID: 1442277342581790, guid: da0095fdce77b2f4b9d06fa5de7e6d23, type: 3}
-    Probability: 66
+    Probability: 71
     maxDuplicates: 2
   - choice: {fileID: 957092361009183504, guid: cb2bd258ea63c0e498aa3882398c52e5, type: 3}
-    Probability: 66
+    Probability: 64
     maxDuplicates: 2
   - choice: {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
     Probability: 70
@@ -63,14 +63,14 @@ MonoBehaviour:
     maxDuplicates: 2
   - choice: {fileID: 5693794071588103231, guid: ef2aa7d797a994173a9950e11e87709e,
       type: 3}
-    Probability: 66
+    Probability: 72
     maxDuplicates: 2
   - choice: {fileID: 2218967897311768651, guid: be75237b74b0e2d45b9f483593945139,
       type: 3}
-    Probability: 66
+    Probability: 65
     maxDuplicates: 2
   - choice: {fileID: 381471431549280775, guid: 83335eecfbc414d649d3d1be95f0adac, type: 3}
-    Probability: 66
+    Probability: 71
     maxDuplicates: 2
   - choice: {fileID: 151678124880253846, guid: f1347ba643e2d004db6e295fecafb255, type: 3}
     Probability: 66

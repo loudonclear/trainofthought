@@ -13,7 +13,8 @@ public class EndState : MonoBehaviour {
     private string[] GameOverLines;
     private bool hasDied = false;
 
-    public int threshold = 5;
+    public int threshold = 7;
+    public int genderThresh = 10;
     
     // Use this for initialization
     void Start () {
@@ -89,6 +90,9 @@ public class EndState : MonoBehaviour {
         int most = 0;
         int secondMost = 0;
         int mostIndex = -1;
+        int numMen = 0;
+        int numWomen = 0;
+        string gameOverResults = "";
 
         for (int i = 0; i < choiceCounts.Length; i++)
         {
@@ -99,8 +103,8 @@ public class EndState : MonoBehaviour {
                 if (choiceCounts[i] > 1)
                 {
                     desc = plural(desc);
-                } 
-                GameOverText.text = GameOverText.text + "\n" + choiceCounts[i] + " " 
+                }
+                gameOverResults += "\n" + choiceCounts[i] + " " 
                     + desc;
 
                 if (choiceCounts[i] > most)
@@ -112,6 +116,13 @@ public class EndState : MonoBehaviour {
                     secondMost = choiceCounts[i];
                 }
             }
+            if (choices[i].GetComponent<ChoiceScript>().gender == ChoiceScript.Gender.female)
+            {
+                numWomen += choiceCounts[i];
+            } else if (choices[i].GetComponent<ChoiceScript>().gender == ChoiceScript.Gender.male)
+            {
+                numMen += choiceCounts[i];
+            }
         }
 
         if(!ranOverSomething)
@@ -121,12 +132,20 @@ public class EndState : MonoBehaviour {
         {
             if (mostIndex != -1 && most > secondMost + threshold)
             {
-                GameOverText.text = "Wow you must really hate " + plural(choices[mostIndex].GetComponent<ChoiceScript>().description).ToLower() + "\n\n" + "You ran over:" + GameOverText.text;
+                GameOverText.text = "Wow you must really hate " + plural(choices[mostIndex].GetComponent<ChoiceScript>().description).ToLower();
             } else
             {
-                GameOverText.text = GameOverLines[Random.Range(0, GameOverLines.Length)] + "\n\n" + "You ran over:" + GameOverText.text;
+                GameOverText.text = GameOverLines[Random.Range(0, GameOverLines.Length)];
             }
-            
+
+            if (Mathf.Abs(numMen - numWomen) > genderThresh)
+            {
+                bool genderMale = numMen > numWomen;
+                GameOverText.text += "\n and you’re certainly sexist... \n You ran over " + Mathf.Abs(numMen - numWomen).ToString() + " more " + (genderMale? "men" : "women") + " than " + (genderMale ? "women" : "men") + ".";
+            }
+
+            GameOverText.text += "\n\n" + "You ran over:" + gameOverResults;
+
         }
     }
 }

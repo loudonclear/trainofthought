@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c835d50bb83461ab11de7370658ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gender: 1
   solid: 0
   description: Old Man
   decisionSound: {fileID: 8300000, guid: 654dd163cda19408eb3f3a4e711cb756, type: 3}
