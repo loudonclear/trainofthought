@@ -12,6 +12,8 @@ public class EndState : MonoBehaviour {
     private int[] choiceCounts;
     private string[] GameOverLines;
     private bool hasDied = false;
+
+    public int threshold = 5;
     
     // Use this for initialization
     void Start () {
@@ -82,8 +84,12 @@ public class EndState : MonoBehaviour {
 
         choices = GameManager.choices;
         choiceCounts = GameManager.choiceCounts;
-        GameOverText.text = GameOverLines[Random.Range(0, GameOverLines.Length)] + "\n\n" + "You ran over:";
+        GameOverText.text = "";
         bool ranOverSomething = false;
+        int most = 0;
+        int secondMost = 0;
+        int mostIndex = -1;
+
         for (int i = 0; i < choiceCounts.Length; i++)
         {
             if(choiceCounts[i] > 0)
@@ -96,11 +102,31 @@ public class EndState : MonoBehaviour {
                 } 
                 GameOverText.text = GameOverText.text + "\n" + choiceCounts[i] + " " 
                     + desc;
+
+                if (choiceCounts[i] > most)
+                {
+                    most = choiceCounts[i];
+                    mostIndex = i;
+                } else if (choiceCounts[i] > secondMost)
+                {
+                    secondMost = choiceCounts[i];
+                }
             }
         }
+
         if(!ranOverSomething)
         {
             GameOverText.text = "You ran over \n absolutely nothing";
+        } else
+        {
+            if (mostIndex != -1 && most > secondMost + threshold)
+            {
+                GameOverText.text = "Wow you must really hate " + plural(choices[mostIndex].GetComponent<ChoiceScript>().description).ToLower() + "\n\n" + "You ran over:" + GameOverText.text;
+            } else
+            {
+                GameOverText.text = GameOverLines[Random.Range(0, GameOverLines.Length)] + "\n\n" + "You ran over:" + GameOverText.text;
+            }
+            
         }
     }
 }
