@@ -58,10 +58,6 @@ MonoBehaviour:
   - choice: {fileID: 151678124880253846, guid: f1347ba643e2d004db6e295fecafb255, type: 3}
     Probability: 0
     maxDuplicates: 2
-  - choice: {fileID: 4789899708035042616, guid: cf8e2d9670c0040f5a541fb42e8c4c57,
-      type: 3}
-    Probability: 45
-    maxDuplicates: 4
   - choice: {fileID: 1884975179379120, guid: fcf8e79abd0bf49e9a0eb001a45c9c46, type: 3}
     Probability: 77
     maxDuplicates: 2
