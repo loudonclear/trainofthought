@@ -46,6 +46,18 @@ public class EndState : MonoBehaviour {
         {
             input = input.Replace("man", "men");
         }
+        else if (input.EndsWith("Man"))
+        {
+            input = input.Replace("Man", "Men");
+        }
+        else if (input.EndsWith("woman"))
+        {
+            input = input.Replace("woman", "women");
+        }
+        else if (input.EndsWith("Woman"))
+        {
+            input = input.Replace("Woman", "Women");
+        }
         else if (input.EndsWith("Person"))
         {
             input = input.Replace("Person", "People");

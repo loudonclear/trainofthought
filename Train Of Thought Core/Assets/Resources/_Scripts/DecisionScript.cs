@@ -48,6 +48,18 @@ public class DecisionScript : MonoBehaviour {
         {
             input = input.Replace("man", "men");
         }
+        else if (input.EndsWith("Man"))
+        {
+            input = input.Replace("Man", "Men");
+        }
+        else if (input.EndsWith("woman"))
+        {
+            input = input.Replace("woman", "women");
+        }
+        else if (input.EndsWith("Woman"))
+        {
+            input = input.Replace("Woman", "Women");
+        }
         else if (input.EndsWith("Person"))
         {
             input = input.Replace("Person", "People");
@@ -84,10 +96,11 @@ public class DecisionScript : MonoBehaviour {
         track.ChangeTrackDir((int)direction);
 
         notification.text = "";
+
         if (Random.value >= 0.5f && choiceSwitchable)
         {
-            choiceListWithProbability ch1 = GetChoiceWithProb(choiceList1);
-            choiceListWithProbability ch2 = GetChoiceWithProb(choiceList2);
+            choiceListWithProbability ch1 = (choiceList1.Count == 0) ? GetChoiceWithProb(choiceList2) : GetChoiceWithProb(choiceList1);
+            choiceListWithProbability ch2 = (choiceList2.Count == 0) ? GetChoiceWithProb(choiceList1) : GetChoiceWithProb(choiceList2);
 
             choice1 = ch2.choice;
             choice2 = ch1.choice;
@@ -96,8 +109,8 @@ public class DecisionScript : MonoBehaviour {
         }
         else
         {
-            choiceListWithProbability ch1 = GetChoiceWithProb(choiceList1);
-            choiceListWithProbability ch2 = GetChoiceWithProb(choiceList2);
+            choiceListWithProbability ch1 = (choiceList1.Count == 0) ? GetChoiceWithProb(choiceList2) : GetChoiceWithProb(choiceList1);
+            choiceListWithProbability ch2 = (choiceList2.Count == 0) ? GetChoiceWithProb(choiceList1) : GetChoiceWithProb(choiceList2);
 
             choice1 = ch1.choice;
             choice2 = ch2.choice;
@@ -105,8 +118,8 @@ public class DecisionScript : MonoBehaviour {
             c2num = Random.Range(1, ch2.maxDuplicates);
         }
 
-        GameObject t1, t2, t3, c1, c2, c3;
 
+        GameObject t1, t2, t3, c1, c2, c3;
 
         switch ((int)direction)
         {
