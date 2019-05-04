@@ -51,8 +51,15 @@ MonoBehaviour:
   - choice: {fileID: 381471431549280775, guid: 83335eecfbc414d649d3d1be95f0adac, type: 3}
     Probability: 100
     maxDuplicates: 3
+  - choice: {fileID: 151678124880253846, guid: f1347ba643e2d004db6e295fecafb255, type: 3}
+    Probability: 100
+    maxDuplicates: 3
   choiceList2:
   - choice: {fileID: 5693794071588103231, guid: ef2aa7d797a994173a9950e11e87709e,
+      type: 3}
+    Probability: 100
+    maxDuplicates: 3
+  - choice: {fileID: 2218967897311768651, guid: be75237b74b0e2d45b9f483593945139,
       type: 3}
     Probability: 100
     maxDuplicates: 3
