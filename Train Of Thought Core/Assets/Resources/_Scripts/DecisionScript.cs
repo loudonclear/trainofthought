@@ -102,6 +102,12 @@ public class DecisionScript : MonoBehaviour {
             choiceListWithProbability ch1 = (choiceList1.Count == 0) ? GetChoiceWithProb(choiceList2) : GetChoiceWithProb(choiceList1);
             choiceListWithProbability ch2 = (choiceList2.Count == 0) ? GetChoiceWithProb(choiceList1) : GetChoiceWithProb(choiceList2);
 
+            while ((choiceList2.Count == 0 || choiceList1.Count == 0) && ch1.choice == ch2.choice)
+            {
+                ch1 = (choiceList1.Count == 0) ? GetChoiceWithProb(choiceList2) : GetChoiceWithProb(choiceList1);
+                ch2 = (choiceList2.Count == 0) ? GetChoiceWithProb(choiceList1) : GetChoiceWithProb(choiceList2);
+            }
+
             choice1 = ch2.choice;
             choice2 = ch1.choice;
             c1num = Random.Range(1, ch2.maxDuplicates);
@@ -111,6 +117,12 @@ public class DecisionScript : MonoBehaviour {
         {
             choiceListWithProbability ch1 = (choiceList1.Count == 0) ? GetChoiceWithProb(choiceList2) : GetChoiceWithProb(choiceList1);
             choiceListWithProbability ch2 = (choiceList2.Count == 0) ? GetChoiceWithProb(choiceList1) : GetChoiceWithProb(choiceList2);
+
+            while ((choiceList2.Count == 0 || choiceList1.Count == 0) && ch1.choice == ch2.choice)
+            {
+                ch1 = (choiceList1.Count == 0) ? GetChoiceWithProb(choiceList2) : GetChoiceWithProb(choiceList1);
+                ch2 = (choiceList2.Count == 0) ? GetChoiceWithProb(choiceList1) : GetChoiceWithProb(choiceList2);
+            }
 
             choice1 = ch1.choice;
             choice2 = ch2.choice;
