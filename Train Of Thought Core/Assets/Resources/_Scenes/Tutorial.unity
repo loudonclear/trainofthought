@@ -426,10 +426,10 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "Swipe left, right, or up to select a track before time runs out. \nIf the
-    timer gets to zero then the forward direction will automatically be picked\nThe
-    timer progressively gets faster the longer you play\nDon't run off the tracks
+    m_LineSpacing: 0.79
+  m_Text: "Swipe left, right, or up to select a track before time runs out. \n\nIf
+    the timer gets to zero then the forward direction will automatically be picked.\n\nThe
+    timer progressively gets faster the longer you play.\n\nDon't run off the tracks
     or hit a rock! "
 --- !u!222 &804465394
 CanvasRenderer:
